@@ -25,8 +25,8 @@ while True:
         shell = [
             "rm .{0}{1}", "del .{0}{1}",
             "rm .{0}{2}", "del .{0}{2}",
-            ".{0}ffmpeg -y -i .{0}input.dat -f mp4 -movflags faststart -crf 26 -r 60 -s 1280x720 -t 0300 .{0}{1}",
-            ".{0}ffmpeg -y -i .{0}input.dat -f mp4 -movflags faststart -crf 26 -r 30 -s  640x360 -t 1800 .{0}{2}",
+            ".{0}avconv -y -i .{0}input.dat -f mp4 -movflags faststart -crf 26 -r 60 -s 1280x720 -t 0300 .{0}{1}",
+            ".{0}avconv -y -i .{0}input.dat -f mp4 -movflags faststart -crf 26 -r 30 -s  640x360 -t 1800 .{0}{2}",
             "add {1} .{0}{1}",
             "add {2} .{0}{2}",
         ]
