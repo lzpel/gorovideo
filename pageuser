@@ -1,0 +1,14 @@
+﻿{%extends "page"%}
+{%block item%}
+<div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+        <a  href="/user/{{i.key.id}}">
+            <img src="{{i.icon|default:"/nail.png"}}"/>
+        </a>
+        <div class="caption">
+            <h3>{{i.name|default:"noname"}}</h3>
+            <p style="height:3em;overflow:hidden;text-overflow:ellipsis;">{{i.text|default:"notext"}}</p>
+        </div>
+    </div>
+</div>
+{%endblock%}

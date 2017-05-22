@@ -1,0 +1,25 @@
+﻿{%extends "base"%}
+{%block main%}
+<h3 id="navbar">検索結果:{{q|default:""}}</h3>
+<form class="form-inline" action="/find">
+    <div class="form-group">
+        <input type="text" name="q" class="form-control" value="{{q|default:""}}" placeholder="Search"/>
+    </div>
+    <div class="form-group">
+        <select name="s" class="form-control">
+            <option value=new {%ifequal s "new"%}selected{%endifequal%}>新着順</option>
+            <option value=old {%ifequal s "old"%}selected{%endifequal%}>古順</option>
+            <option value=god {%ifequal s "god"%}selected{%endifequal%}>高評価順</option>
+            <option value=bad {%ifequal s "bad"%}selected{%endifequal%}>低評価順</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <select name="t" class="form-control">
+            <option value="a" {%if a%}selected{%endif%}>タグ検索</option>
+            <option value="g" {%if g%}selected{%endif%} {%if not a and not g%}selected{%endif%}>語句検索</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-default">検索</button>
+</form>
+{%include "page"%}
+{%endblock%}

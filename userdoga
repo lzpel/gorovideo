@@ -1,0 +1,25 @@
+﻿{%extends "user"%}
+{%block menu%}
+<div class="panel panel-default">
+	<div class="panel-body">
+		<h4>動画投稿</h4>
+		<form class="upload2"></form>
+		<form action="{{doga}}" method="POST" enctype="multipart/form-data" class="upload1" ajaxsubmit="upload2">
+			<input hidden name="redirect" value="{{url}}"/>
+			<input name="file" type="file" class="form-control" src="dogafile" accept="video/*"/>
+			<div class="progress progress-striped active">
+				<div class="progress-bar ajaxbar"></div>
+			</div>
+			<p class="ajaxtxt"></p>
+		</form>
+		<form action="/post/doga/new" method="POST" enctype="multipart/form-data" ajaxsubmit="upload1">
+			<video hidden id="dogafile"></video>
+			<input hidden name="play" play="dogafile"/>
+			<input hidden name="image" snap="dogafile" snapw="320" snaph="180"/>
+			<button class="btn btn-default">
+				<span class="glyphicon glyphicon-export">投稿する</span>
+			</button>
+		</form>
+	</div>
+</div>
+{%endblock%}

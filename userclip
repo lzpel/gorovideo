@@ -1,0 +1,16 @@
+﻿{%extends "user"%}
+{%block menu%}
+<div class="row">
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            <a  href="/item/[[kslf.id]]">
+                <img [[dummy]]src="[[icon|def:/nail.png]]"/>
+            </a>
+            <div class="caption">
+                <h3>[[name]]</h3>
+                <p style="height:3em;overflow:hidden;text-overflow:ellipsis;">[[text]]</p>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

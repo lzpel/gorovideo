@@ -1,0 +1,12 @@
+﻿{%extends "page"%}
+{%block item%}
+<a class="col-md-4" href="/item/{{i.key.id}}">
+    <div style="position:relative;">
+        <img src="{{i.icon}}" style="width:100%;height:auto;"/>
+        <div style="position:absolute;top:0;bottom:0;left:0;right:0;">
+            <kbd class="text-right">{{i.tlen|minsec}}</kbd>
+        </div>
+    </div>
+    <p style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">{{i.name}}</p>
+</a>
+{%endblock%}

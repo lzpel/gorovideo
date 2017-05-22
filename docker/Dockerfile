@@ -6,4 +6,4 @@ RUN apt-get install libav-tools -y
 ADD . /app/
 RUN pip install -r requirements.txt
 
-CMD gunicorn -b :80 main:app
+CMD python conv.py globalhost

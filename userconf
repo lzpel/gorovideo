@@ -1,0 +1,38 @@
+﻿{%extends "user"%}
+{%block menu%}
+<div class="panel panel-default">
+	<div class="panel-body">
+		<form action="/post/user/cok">
+			<input name="redirect" value="/sign" hidden>
+			<h3>ログアウト</h3>
+			<button type="submit" class="btn btn-default">
+				<span class="glyphicon glyphicon-off">ログアウト</span>
+			</button>
+		</form>
+		<form class="form-horizontal" action="/post/user/sec">
+			<input name="redirect" value="{{url}}" hidden>
+			<h3>EMAILとPASSWORDを変更</h3>
+			<p>新しいEMAIL</p>
+			<input name="newmail" type="email" class="form-control" value="{{main.mail}}"/>
+			<p>新しいPASSWORD</p>
+			<input name="newword" type="password" class="form-control" value="{{main.word}}"/>
+			<p>現在のEMAIL</p>
+			<p>{{main.mail}}</p>
+			<p>現在のPASSWORD</p>
+			<input name="word" type="password" class="form-control"/>
+			<button type="submit" class="btn btn-default">
+				<span class="glyphicon glyphicon-ok">保存</span>
+			</button>
+		</form>
+		<form class="form-horizontal" action="/post/user/del">
+			<input name="redirect" value="/" hidden>
+			<h3>退会</h3>
+			<p>現在のPASSWORD</p>
+			<input name="word" type="password" class="form-control"/>
+			<button type="submit" class="btn btn-default">
+				<span class="glyphicon glyphicon-trash">退会</span>
+			</button>
+		</form>
+	</div>
+</div>
+{%endblock%}

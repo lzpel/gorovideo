@@ -1,0 +1,5 @@
+﻿{%extends "home"%}
+{%block list%}
+<h2>新着</h2>
+{%include "pagedoga"%}
+{%endblock%}

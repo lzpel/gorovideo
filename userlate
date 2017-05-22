@@ -1,0 +1,5 @@
+﻿{%extends "user"%}
+{%block menu%}
+<h2>新着</h2>
+{%include "pagedoga"%}
+{%endblock%}

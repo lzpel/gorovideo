@@ -1,0 +1,43 @@
+﻿{%extends "base"%}
+{%block main%}
+{%if error%}
+<div class="panel panel-danger">
+	<div class="panel-body">
+		{{error}}
+	</div>
+</div>
+{%endif%}
+<div class="panel panel-default">
+	<div class="panel-body">
+		<h3 class="panel-title">ログイン</h3>
+		<form class="form-horizontal" action="post/user/cok">
+			<input name="redirect" value="{{url}}" hidden>
+			<label for="inputEmail" class="control-label">Email</label>
+			<input name="mail" type="email" class="form-control" id="inputEmail" placeholder="Email">
+			<label for="inputPassword" class="control-label">Password</label>
+			<input name="word" type="password" class="form-control" id="inputPassword" placeholder="Password">
+			<button type="submit" class="btn btn-primary">入室</button>
+		</form>
+	</div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <h3 class="panel-title">会員登録</h3>
+		<form class="form-horizontal" action="post/user/new" same="word">
+			<input name="redirect" value="{{url}}" hidden>
+			<label for="inputEmail" class="control-label">EMAIL記入</label>
+			<input name="mail" type="email" class="form-control" id="inputEmail" placeholder="Email">
+			<label for="inputPassword" class="control-label">PASSWORD記入</label>
+			<input name="word" type="password" class="form-control word" id="word" placeholder="Password">
+			<label for="inputPassword" class="control-label">PASSWORD再確認</label>
+			<input name="same" type="password" class="form-control word" placeholder="Password">
+			<label for="inputPassword" class="control-label">名前</label>
+			<input name="name" type="text" class="form-control" id="inputPassword" placeholder="Handle Name">
+			<label for="inputPassword" class="control-label">利用規約</label>
+			<iframe class="panel-body" src="/policy.txt" width=100%>
+			</iframe>
+			<button class="btn btn-default">利用規約に同意の上で会員登録</button>
+		</form>
+    </div>
+</div>
+{%endblock%}

@@ -1,0 +1,20 @@
+﻿{%extends "user"%}
+{%block menu%}
+<div class="panel panel-default">
+	<div class="panel-body">
+		<h4>紹介</h4>
+		<form class="form-horizontal" action="/post/user/set" method="POST" enctype="multipart/form-data">
+			<input name="redirect" value="{{url}}" hidden>
+			<h5>名前</h5>
+			<input name="name" value="{{main.name|default:""}}" class="form-control">
+			<h5>説明</h5>
+			<input name="text" value="{{main.text|default:""}}" class="form-control">
+			<h5>画像</h5>
+			<input type="file" class="form-control" src="icon" accept="image/*"/>
+			<img hidden disabled id="icon"/>
+			<input hidden name="image" snap="icon" snapw="100" snaph="100">
+			<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-ok">保存</span></button>
+		</form>
+	</div>
+</div>
+{%endblock%}

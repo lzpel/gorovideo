@@ -1,0 +1,16 @@
+﻿{%extends "base"%}
+{%block main%}
+<ul class="nav nav-pills">
+	<li style="width:33%;margin:0;">
+		<a href="/late">新着</a>
+	</li>
+	<li style="width:33%;margin:0;">
+		<a href="/qual">人気</a>
+	</li>
+	<li style="width:33%;margin:0;">
+		<a href="/attr">カテゴリ</a>
+	</li>
+</ul>
+{%block list%}
+{%endblock%}
+{%endblock%}

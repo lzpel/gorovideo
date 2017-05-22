@@ -1,0 +1,31 @@
+﻿{%extends "base"%}
+{%block main%}
+<div class="row">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">Qどうやって動画を投稿するのですか？</h3>
+        </div>
+        <div class="panel-body">
+			<p>A右上のアイコンをクリックしユーザーページへ行きます。画面上の「ファイルを選択ボタン」ボタンを押しアップロードしたい動画を選んでください。投稿するボタンを押して暫く待てばアップロードは完了しページは元の場所に遷移します</p>
+			<p>最初は動画のサムネイルは0秒目の画像で題名は「無題」となります。投稿者は動画の視聴ページでサムネイルと題名と説明文を何度でも編集できます。</p>
+		</div>
+	</div>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">Q時刻がずれます？</h3>
+        </div>
+        <div class="panel-body">
+			<p>時差です。</p>
+		</div>
+	</div>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">Q聞きたいことが書いてないんですが？</h3>
+        </div>
+        <div class="panel-body">
+			<p>直接ここで聞いてください</p>
+			<a class="twitter-timeline" href="https://twitter.com/gorovideo">Tweets by gorovideo</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+		</div>
+	</div>
+</div>
+{%endblock%}

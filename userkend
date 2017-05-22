@@ -1,0 +1,5 @@
+﻿{%extends "user"%}
+{%block menu%}
+<p>フォロー</p>
+{%include "pageuser"%}
+{%endblock%}

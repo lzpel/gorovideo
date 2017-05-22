@@ -1,0 +1,39 @@
+﻿{%extends "base"%}
+{%block main%}
+<div class="row">
+	<div class="col-md-3">
+		<a href="#" class="pull-left">
+			<img width="50px" height="50px;" src="{{main.icon|default:"/nail.png"}}"/>
+		</a>
+		<p class="pull-left">{{main.name|default:"noname"}}</p>
+		<div class="clearfix"></div>
+		{%if user and main.key != user.key%}
+		{%if near%}
+		<a class="btn btn-success btn-sm" href="/post/user/follow?redirect={{path}}&id={{main.key.id}}&del=yes">フォロー中</a>
+		{%else%}
+		<a class="btn btn-default btn-sm" href="/post/user/follow?redirect={{path}}&id={{main.key.id}}&add=yes">フォローする</a>
+		{%endif%}
+		{%endif%}
+		<div class="collapse" id="user_prof">
+			{{main.bone|gmt:"9"|date:"Y/m/d H:i"}} に登録<br/>
+			{{main.text|escape|linebreaks|link|safe}}
+		</div>
+		<a class="btn btn-default btn-sm center-block" data-toggle="collapse" href="#user_prof">...</a>
+	</div>
+	<div class="col-md-9">
+		<ul class="nav nav-pills">
+			<li style="width:50%;margin:0;"><a href="/user/kend/{{main.key.id}}">フォロー</a></li>
+			<li style="width:50%;margin:0;"><a href="/user/kbgn/{{main.key.id}}">フォロワー</a></li>
+			<li style="width:33%;margin:0;"><a href="/user/late/{{main.key.id}}">新着</a></li>
+			<li style="width:33%;margin:0;"><a href="/user/qual/{{main.key.id}}">人気</a></li>
+			<li style="width:33%;margin:0;"><a href="/user/clip/{{main.key.id}}">クリップ</a></li>
+			{%if mine%}
+			<li style="width:33%;margin:0;"><a href="/user/doga/{{main.key.id}}">動画投稿</a></li>
+			<li style="width:33%;margin:0;"><a href="/user/prof/{{main.key.id}}">紹介</a></li>
+			<li style="width:33%;margin:0;"><a href="/user/conf/{{main.key.id}}">機密</a></li>
+			{%endif%}
+		</ul>
+		{%block menu%}{%endblock%}
+	</div>
+</div>
+{%endblock%}

@@ -1,0 +1,19 @@
+﻿runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+
+- url: /(.*\..*)
+  static_files: \1
+  upload: .*\.(txt|jpg|png|gif|woff|woff2|ttf|css|js)
+
+- url: /.*
+  script: main.app
+
+libraries:
+- name: webapp2
+  version: "2.5.2"
+  
+env_variables:
+  ADMIN_ACCOUNT_EMAIL: 'misumi3104@gmail.com'

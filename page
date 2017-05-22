@@ -1,0 +1,14 @@
+﻿<nav aria-label="Page navigation">
+    <ul class="pagination">
+        <li><a aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+        {%for i in page.pagerng%}
+        <li><a href="{{path}}?page={{i}}" {%if i == page.page%}class="active"{%endif%}>{{i}}</a></li>
+        {%endfor%}
+        <li><a aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+    </ul>
+</nav>
+<div class="row">
+{%for i in page.fetch%}
+{%block item%}{%endblock%}
+{%endfor%}
+</div>

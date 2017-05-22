@@ -1,0 +1,48 @@
+﻿{%extends "base"%}
+{%block main%}
+<div class="row">
+	<div class="panel panel-default">
+		<div class="panel-body">
+		    <h4>{{main.name|default:"noname"}}</h4>
+		    <a href="/item/{{make.key.id}}"><small>{{make.name|default:"noname"}}</small></a>
+            <div class="panel-body" activelist="/list/doga/new///{{main.key.id}}///">
+            </div>
+            <div class="row" activelist="/list/god/doga///>{{main.key.id}}///">
+                <a class="col-md-4" href="/item/[[kslf.id]]">
+                    <div style="position:relative;">
+                        <img [[dummy]]src="[[icon]]" style="width:100%;height:auto;"/>
+                        <div style="position:absolute;top:0;bottom:0;left:0;right:0;">
+                            <kbd class="text-right">[[tlen|minsec]]</kbd>
+                        </div>
+                    </div>
+                    <p style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">[[name]]</p>
+                </a>
+            </div>
+		</div>
+	</div>
+	<div class="panel panel-success">
+		<div class="panel-heading">
+			<p class="panel-title">設定</p>
+		</div>
+		<div class="panel-body">
+			<form class="form-horizontal" action="/post/clip/set">
+				<input name="redirect" value="{{url}}" hidden>
+				<input name="id" value="{{main.key.id}}" hidden>
+				<p>名前を変更</p>
+				<input name="name" class="form-control" value="{{main.name}}"/>
+				<button type="submit" class="btn btn-default">
+					<span class="glyphicon glyphicon-ok">変更</span>
+				</button>
+			</form>
+			<form class="form-horizontal" action="/post/clip/del">
+				<input name="redirect" value="/item/{{user.key.id}}" hidden>
+				<input name="id" value="{{main.key.id}}" hidden>
+				<p>削除</p>
+				<button type="submit" class="btn btn-default">
+					<span class="glyphicon glyphicon-trash">削除</span>
+				</button>
+			</form>
+		</div>
+	</div>
+</div>
+{%endblock%}

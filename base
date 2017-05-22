@@ -1,0 +1,112 @@
+<html lang="jp">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<title>gorogoro動画 {{main.name|default:"_(:3」∠)_"}}</title>
+
+		<!-- Bootstrap -->
+		<link href="/css/bootstrap.min.css" rel="stylesheet">
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<style>
+			.navbar-collapse.collapse {
+			display: block!important;
+			}
+
+			.navbar-nav>li, .navbar-nav {
+			float: left !important;
+			}
+
+			.navbar-nav.navbar-right:last-child {
+			margin-right: -15px !important;
+			}
+
+			.navbar-right {
+			float: right!important;
+			}
+		</style>
+		<nav class="navbar navbar-default navbar-static-top">
+			<div class="container" style="">
+				<ul class="nav navbar-nav">
+					<li>
+						<a href="/" style="padding-top:0;padding-bottom:0;">
+							<img src="/logo.png" style="height:30px;"/>
+						</a>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<a href="/find">
+							<i class="glyphicon glyphicon-search" aria-hidden="true"></i>
+							<div class="hidden-xs" style="display:inline;">検索</div>
+						</a>
+					</li>
+					{%if user%}
+					<li>
+						<a href="/user/{{user.key.id}}">
+							<i class="glyphicon glyphicon-user" aria-hidden="true"></i>
+							<div class="hidden-xs" style="display:inline;">{{user.name}}</div>
+						</a>
+					</li>
+					{%else%}
+					<li>
+						<a href="/sign">
+							<i class="glyphicon glyphicon-education" aria-hidden="true"></i>
+							<div class="hidden-xs" style="display:inline;">ログイン/会員登録</div>
+						</a>
+					</li>
+					{%endif%}
+				</ul>
+			</div>
+		</nav>
+		<div class="container">
+			{%block main%}{%endblock%}
+			{%if auth%}
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">管理者権限</h3>
+				</div>
+				<div class="panel-body">
+					<form action="/post/auth/item" method="POST">
+						<input name="redirect" value="{{path}}" hidden>
+						<input hidden name="id" value="{{main.key.id}}">
+						<label>bone</label>
+						<input name="bone" type="text" value="{{main.bone|gmt:"9"|date:"Y/m/d H:i"}}" class="form-control">
+						<label>name</label>
+						<input name="name" type="text" value="{{main.name}}" class="form-control">
+						<label>text</label>
+						<textarea name="text" width="100%" class="form-control">{{main.text}}</textarea>
+						<label>mail</label>
+						<input name="mail" type="text" value="{{main.mail}}" class="form-control">
+						<label>word</label>
+						<input name="word" type="text" value="{{main.word}}" class="form-control">
+						<button class="btn btn-default" name="cmd" value="set">更新</button>
+						<button class="btn btn-default" name="cmd" value="del">削除</button>
+					</form>
+					<h3>attribute</h3>
+					<form action="/post/auth/attr" method="POST" class="form-vertical">
+						<input name="redirect" value="{{path}}" hidden>
+						<textarea name="attr" width="100%"></textarea>
+						<button class="btn btn-default">タグ追加</button>
+					</form>
+				</div>
+			</div>
+			{%endif%}
+		</div>
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="/js/bootstrap.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="/myutil.js"></script>
+	</body>
+</html>
