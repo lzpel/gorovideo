@@ -1,4 +1,4 @@
-﻿import json, sys, os, logging, time, subprocess
+﻿import json, sys, os, logging, time
 import requests
 
 if len(sys.argv)==1:
@@ -31,12 +31,14 @@ while True:
             "add {2} .{0}{2}",
         ]
         for i in shell:
-            i = i.format(os.sep, "r60s1280x0720.dat", "r30s0640x0360.dat").split()
-            if i[0] == "add":
-                if os.path.exists(i[2]):
-                    file[i[1]] = open(i[2], 'rb')
+            i = i.format(os.sep, "r60s1280x0720.dat", "r30s0640x0360.dat")
+            s = i.split()
+            if s[0] == "add":
+                if os.path.exists(s[2]):
+                    file[s[1]] = open(s[2], 'rb')
             else:
-                subprocess.call(i, shell=True)
+                print(i)
+                os.system(i)
         data = {
             'id': j["main"]["key"]["id"]
         }
