@@ -14,6 +14,9 @@ handlers:
 libraries:
 - name: webapp2
   version: "2.5.2"
+
+skip_files:
+- .*ffmpeg(.exe)?$
   
 env_variables:
   ADMIN_ACCOUNT_EMAIL: 'misumi3104@gmail.com'
