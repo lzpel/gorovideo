@@ -6,22 +6,28 @@ if len(sys.argv)==1:
 else:
     host='https://video-161819.appspot.com'
 
+#継承
+file=None
+oldconv=None
+
 while True:
-    r = requests.post("{0}/post/doga/conv".format(host))
-    j = r.json()
-    print(j)
-    if j and j["main"]:
+    #受信
+    newconv = requests.post("{0}/post/doga/conv".format(host)).json()
+    if oldconv and oldconv["main"]:
+        # 送信
+        #r = requests.post(newconv["doga"], data={'id': oldconv["main"]["key"]["id"]}, files=file)
+        logging.warning(newconv)
+        logging.warning(oldconv)
+        logging.warning(file)
+    if newconv and newconv["main"]:
         # 保存
-        file = open(".{0}input.dat".format(os.sep), 'wb')
-        rdl = requests.get("{0}/blob/{1}".format(host,j["main"]["blob"][0]), stream=True)
-        print "{0}/blob/{1}".format(host,j["main"]["blob"][0])
-        for chunk in rdl.iter_content(chunk_size=1024 ** 2):
+        tmp = open(".{0}input.dat".format(os.sep), 'wb')
+        for chunk in requests.get("{0}/blob/{1}".format(host,j["main"]["blob"][0]), stream=True).iter_content(chunk_size=1024 ** 2):
             if chunk:
-                file.write(chunk)
+                tmp.write(chunk)
                 logging.warning("download {0}".format(j["main"]["key"]["id"]))
-        file.close()
+        tmp.close()
         # 変換
-        file = {}
         shell = [
             "rm .{0}{1}", "del .{0}{1}",
             "rm .{0}{2}", "del .{0}{2}",
@@ -39,13 +45,10 @@ while True:
             else:
                 print(i)
                 os.system(i)
-        data = {
-            'id': j["main"]["key"]["id"]
-        }
-        # 送信
-        r = requests.post(j["doga"], data=data, files=file)
         # 終了
         logging.warning("send {0} file to id:{1}".format(len(file), data["id"]))
-    else:
-        logging.warning("now it do not need convert files")
+    # 入替
+    oldconv = newconv
+    #休止
+    logging.warning("sleep")
     time.sleep(5)
