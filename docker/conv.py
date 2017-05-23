@@ -26,7 +26,7 @@ while True:
         for chunk in req.iter_content(chunk_size=1024 ** 2):
             if chunk:
                 tmp.write(chunk)
-                logging.warning("download {0}".format(j["main"]["key"]["id"]))
+                logging.warning("download {0}".format(newconv["main"]["key"]["id"]))
         tmp.close()
         # 変換
         shell = [
