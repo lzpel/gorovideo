@@ -22,7 +22,8 @@ while True:
     if newconv and newconv["main"]:
         # 保存
         tmp = open(".{0}input.dat".format(os.sep), 'wb')
-        for chunk in requests.get("{0}/blob/{1}".format(host,j["main"]["blob"][0]), stream=True).iter_content(chunk_size=1024 ** 2):
+        req=requests.get("{0}/blob/{1}".format(host,newconv["main"]["blob"][0]), stream=True)
+        for chunk in req.iter_content(chunk_size=1024 ** 2):
             if chunk:
                 tmp.write(chunk)
                 logging.warning("download {0}".format(j["main"]["key"]["id"]))
