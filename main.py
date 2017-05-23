@@ -205,10 +205,10 @@ class work(moto.workhandler):
 				o.main.size = len(blob)
 				o.main.putblob(blob)
 		if s.url("/post/doga/conv"):
+			o.doga = moto.getuploadurl("/post/doga/file", 1024 ** 3)
 			o.main = base.query(base.anal=="doga", base.size==1).order(base.last).get()
 			if o.main:
 				o.main.put()
-				o.doga = moto.getuploadurl("/post/doga/file", 1024 ** 3)
 		if s.url("/post/doga/attr") and o.user:
 			o.main.attr = filter(lambda x: x != i.attr, o.main.attr) + ([i.attr] if i.add else [])
 			o.main.put()
