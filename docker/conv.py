@@ -38,11 +38,11 @@ while True:
 		]
 		stat["file"] = {}
 		for i in shell:
-			i = i.format(os.sep, "r30s0640x0360.dat", "r60s1280x0720.dat")
+			i = i.format(os.sep, "01r30s0640x0360.dat", "02r60s1280x0720.dat")
 			s = i.split()
 			if s[0] == "add":
 				if os.path.exists(s[2]):
-					stat["file"]["{0}".format(len(stat["file"]))]=open(s[2], 'rb')
+					stat["file"][s[1]]=open(s[2], 'rb')
 			else:
 				print("\n{0}\n".format(i))
 				os.system(i)
