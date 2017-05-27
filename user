@@ -1,5 +1,7 @@
-﻿{%extends "base"%}
+{%extends "base"%}
 {%block main%}
+<script src="/jquery.min.js"></script>
+<script src="/myutil.js"></script>
 <div class="row">
 	<div class="col-md-3">
 		<a href="#" class="pull-left">
@@ -14,11 +16,8 @@
 		<a class="btn btn-default btn-sm" href="/post/user/follow?redirect={{path}}&id={{main.key.id}}&add=yes">フォローする</a>
 		{%endif%}
 		{%endif%}
-		<div class="collapse" id="user_prof">
-			{{main.bone|gmt:"9"|date:"Y/m/d H:i"}} に登録<br/>
-			{{main.text|escape|linebreaks|link|safe}}
-		</div>
-		<a class="btn btn-default btn-sm center-block" data-toggle="collapse" href="#user_prof">...</a>
+		{{main.bone|gmt:"9"|date:"Y/m/d H:i"}} に登録<br/>
+		{{main.text|default:""|escape|linebreaks|link|safe}}
 	</div>
 	<div class="col-md-9">
 		<ul class="nav nav-pills">

@@ -2,9 +2,8 @@
 import os, json, urllib, time, datetime, math
 from logging import info
 from google.appengine.ext.webapp import template, blobstore_handlers, RequestHandler
-from google.appengine.api import app_identity, images, urlfetch
+from google.appengine.api import app_identity, mail
 from google.appengine.ext import blobstore, ndb
-
 
 def getenviron(key):
 	return os.environ.get(key)
@@ -18,9 +17,9 @@ def getuploadurl(next, maxbytes=None):
 	return blobstore.create_upload_url(next, max_bytes_per_blob=maxbytes)
 
 
-def getdefaultsender():
-	return u"anything@{0}.appspotmail.com".format(app_identity.get_application_id())
-
+def sendmail(data):
+	data["sender"]=u"anything@{0}.appspotmail.com".format(app_identity.get_application_id())
+	mail.send_mail(sender=data["sender"], to=data["to"], subject=data["subject"],body=data["body"])
 
 def getunicode(t):
 	for i in ["utf-8", "ascii", "shift_jis", "euc-jp"]:
@@ -119,18 +118,6 @@ class base(ndb.Model):
 		if s.anal == "rice":
 			s.tpos = s.tpos or s.flt0
 
-	def putblob(s, blob):
-		if s.blob:
-			info(s.blob)
-			blobstore.delete(s.blob)
-		blob = filter(lambda x: x.size > 0, blob)
-		s.blob = [i.key() for i in blob]
-		s.put()
-		for i in blob:
-			i.used = True
-		info(s.blob)
-		time.sleep(1)  # 同一NDB要素の頻繁な更新は無視される
-
 	def getgramtext(s):
 		# please custumize
 		return (unicode().join(s.attr) + (getunicode(s.name) or unicode()) + (getunicode(s.text) or unicode()))[:200]
@@ -191,6 +178,8 @@ class data:
 class blobhandler(blobstore_handlers.BlobstoreDownloadHandler):
 	def get(s, blob):
 		s.send_blob(blob)
+		if s.request.headers.has_key("Range"):
+			s.response.headers.add_header('X-AppEngine-BlobRange', s.request.headers['Range'])
 
 
 class workhandler(blobstore_handlers.BlobstoreUploadHandler, RequestHandler):
@@ -198,8 +187,9 @@ class workhandler(blobstore_handlers.BlobstoreUploadHandler, RequestHandler):
 		return s.request.cookies.get(k, '')
 
 	def cset(s, k, v, d=100):
-		s.response.headers.add_header('Set-Cookie',
-		                              '{0}={1}; path=/; max-age={2}'.format(k, v, 86400 * d if v else -100))
+		if not v:
+			d = -d
+		s.response.headers.add_header('Set-Cookie', '{0}={1}; path=/; max-age={2}'.format(k, v, 86400 * d))
 
 	def kget(s, m=True):
 		try:
@@ -242,15 +232,14 @@ class workhandler(blobstore_handlers.BlobstoreUploadHandler, RequestHandler):
 		s.i = data()
 		for k in s.request.arguments():
 			setattr(s.i, k, s.request.get(k))
+		if all(i.size for i in s.get_uploads()):
+			s.i.upload=[i.key() for i in s.get_uploads()]
+		else:
+			blobstore.delete([i.key for i in s.get_uploads()])
+
 		# 処理
 		s.o = data()
-		try:
-			s.work(s.i, s.o)
-		finally:
-			# 正常な動作を確認
-			blob = s.get_uploads()
-			blob = filter(lambda n: not getattr(n, "used", False), blob)
-			blobstore.delete([i.key() for i in blob])
+		s.work(s.i, s.o)
 		# 出力
 		if s.o.redirect:
 			s.redirect(str(s.o.redirect))
@@ -261,8 +250,8 @@ class workhandler(blobstore_handlers.BlobstoreUploadHandler, RequestHandler):
 		else:
 			def jsondefault(o):
 				if isinstance(o, ndb.Model):
-					r=o.to_dict()
-					r["key"]=o.key
+					r = o.to_dict()
+					r["key"] = o.key
 					return r
 				if isinstance(o, ndb.Key):
 					return {"id": o.id(), "kind": o.kind(), "urlsafe": o.urlsafe()}

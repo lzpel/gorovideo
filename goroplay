@@ -131,7 +131,7 @@
 		</div>
 	</div>
 </div>
-<script src="/jquery.js"></script>
+<script src="/jquery.min.js"></script>
 <script src="/player.js"></script>
 <script>
 function flow(){

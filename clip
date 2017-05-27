@@ -3,21 +3,13 @@
 <div class="row">
 	<div class="panel panel-default">
 		<div class="panel-body">
-		    <h4>{{main.name|default:"noname"}}</h4>
-		    <a href="/item/{{make.key.id}}"><small>{{make.name|default:"noname"}}</small></a>
-            <div class="panel-body" activelist="/list/doga/new///{{main.key.id}}///">
-            </div>
-            <div class="row" activelist="/list/god/doga///>{{main.key.id}}///">
-                <a class="col-md-4" href="/item/[[kslf.id]]">
-                    <div style="position:relative;">
-                        <img [[dummy]]src="[[icon]]" style="width:100%;height:auto;"/>
-                        <div style="position:absolute;top:0;bottom:0;left:0;right:0;">
-                            <kbd class="text-right">[[tlen|minsec]]</kbd>
-                        </div>
-                    </div>
-                    <p style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">[[name]]</p>
-                </a>
-            </div>
+		    <h4>
+		        {{main.name|default:"noname"}}
+		        <a href="/item/{{make.key.id}}">
+		            <small>by {{make.name|default:"noname"}}</small>
+		        </a>
+		    </h4>
+			{%include "pagedoga"%}
 		</div>
 	</div>
 	<div class="panel panel-success">

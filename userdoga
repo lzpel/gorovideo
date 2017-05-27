@@ -4,22 +4,47 @@
 	<div class="panel-body">
 		<h4>動画投稿</h4>
 		<form class="upload2"></form>
-		<form action="{{doga}}" method="POST" enctype="multipart/form-data" class="upload1" ajaxsubmit="upload2">
-			<input hidden name="redirect" value="{{url}}"/>
-			<input name="file" type="file" class="form-control" src="dogafile" accept="video/*"/>
-			<div class="progress progress-striped active">
-				<div class="progress-bar ajaxbar"></div>
-			</div>
-			<p class="ajaxtxt"></p>
+		<form action="{{doga}}" id="fileform">
+			<input hidden name="id" value="" id="fileformid"/>
+			<input name="file" type="file" accept="video/*" id="fileformfile">
 		</form>
-		<form action="/post/doga/new" method="POST" enctype="multipart/form-data" ajaxsubmit="upload1">
-			<video hidden id="dogafile"></video>
-			<input hidden name="play" play="dogafile"/>
-			<input hidden name="image" snap="dogafile" snapw="320" snaph="180"/>
-			<button class="btn btn-default">
-				<span class="glyphicon glyphicon-export">投稿する</span>
-			</button>
+		<form action="/post/doga/new" id="infoform">
+			<video hidden id="video"></video>
 		</form>
+		<div class="progress progress-striped active">
+			<div class="progress-bar" id="progressbar"></div>
+		</div>
+		<p id="progresstxt"></p>
+		<a class="btn btn-default" id="submit">
+			<span class="glyphicon glyphicon-export">投稿する</span>
+		</a>
+		<script>
+		bindfilesrc($("#fileformfile"),$("#video"))
+		$("#submit").click(function(){
+			if($("video").attr("src")){
+				addplaydata($("#infoform"),$("#video"))
+				addsnapshot($("#infoform"),$("#video"),320,180)
+				postform({
+					form:$("#infoform"),
+					success:function(data){
+						$("#fileformid").attr("value",data.main.key.id)
+						postform({
+							form:$("#fileform"),
+							progress:function(percent){
+								$("#progressbar").css("width",percent+"%")
+								$("#progresstxt").text(percent+"%")
+							},
+							success:function(){
+								window.location.href = '/item/'+data.main.key.id
+							}
+						})
+					},
+					error:function(){
+					}
+				})
+			}
+		})
+		</script>
 	</div>
 </div>
 {%endblock%}

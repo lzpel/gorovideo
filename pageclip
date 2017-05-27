@@ -1,0 +1,7 @@
+﻿{%extends "page"%}
+{%block item%}
+<a  href="/item/{{i.key.id}}">
+	<h3>{{i.name|default:"noname"}}</h3>
+	<p style="height:3em;overflow:hidden;text-overflow:ellipsis;">{{i.text|default:"notext"}}</p>
+</a>
+{%endblock%}

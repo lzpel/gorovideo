@@ -1,4 +1,4 @@
-<html lang="jp">
+<html>
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -43,6 +43,12 @@
 					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<a href="/help">
+							<i class="glyphicon glyphicon-question-sign" aria-hidden="true"></i>
+							<div class="hidden-xs" style="display:inline;">説明</div>
+						</a>
+					</li>
 					<li>
 						<a href="/find">
 							<i class="glyphicon glyphicon-search" aria-hidden="true"></i>
@@ -94,7 +100,7 @@
 					<h3>attribute</h3>
 					<form action="/post/auth/attr" method="POST" class="form-vertical">
 						<input name="redirect" value="{{path}}" hidden>
-						<textarea name="attr" width="100%"></textarea>
+						<input name="attr" class="form-control"></input>
 						<button class="btn btn-default">タグ追加</button>
 					</form>
 				</div>
@@ -103,7 +109,7 @@
 		</div>
 
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="/jquery.min.js"></script>
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
 		<script src="/js/bootstrap.min.js"></script>
 		<!-- Include all compiled plugins (below), or include individual files as needed -->

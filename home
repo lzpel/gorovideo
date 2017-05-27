@@ -1,4 +1,4 @@
-﻿{%extends "base"%}
+{%extends "base"%}
 {%block main%}
 <ul class="nav nav-pills">
 	<li style="width:33%;margin:0;">

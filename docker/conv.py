@@ -31,18 +31,18 @@ while True:
 		shell = [
 			"rm .{0}{1}", "del .{0}{1}",
 			"rm .{0}{2}", "del .{0}{2}",
-			".{0}ffmpeg -y -i .{0}input.dat -f mp4 -movflags faststart -crf 26 -r 60 -s 1280x720 -t 0300 .{0}{1}",
-			".{0}ffmpeg -y -i .{0}input.dat -f mp4 -movflags faststart -crf 26 -r 30 -s  640x360 -t 1800 .{0}{2}",
+			".{0}ffmpeg -y -i .{0}input.dat -f mp4 -movflags faststart -crf 26 -r 30 -s  640x360 -t 1800 .{0}{1}",
+			".{0}ffmpeg -y -i .{0}input.dat -f mp4 -movflags faststart -crf 26 -r 60 -s 1280x720 -t 0300 .{0}{2}",
 			"add {1} .{0}{1}",
 			"add {2} .{0}{2}",
 		]
 		stat["file"] = {}
 		for i in shell:
-			i = i.format(os.sep, "r60s1280x0720.dat", "r30s0640x0360.dat")
+			i = i.format(os.sep, "r30s0640x0360.dat", "r60s1280x0720.dat")
 			s = i.split()
 			if s[0] == "add":
 				if os.path.exists(s[2]):
-					stat["file"][s[1]] = open(s[2], 'rb')
+					stat["file"]["{0}".format(len(stat["file"]))]=open(s[2], 'rb')
 			else:
 				print("\n{0}\n".format(i))
 				os.system(i)

@@ -1,13 +1,10 @@
 ﻿{%extends "home"%}
 {%block list%}
-<h2>カテゴリー</h2>
-<ul>
-    {%for i in attr%}
-    {%if i.mail%}
-    </ul><li><a href="/find?a={{i.name}}">{{i.name}}({{i.int0|default:"0"}})</a></li><ul>
-    {%else%}
-    <li><a href="/find?a={{i.name}}">{{i.name}}({{i.int0|default:"0"}})</a></li>
-    {%endif%}
-    {%endfor%}
-</ul>
+{%for i in attr%}
+{%if i.mail%}
+<a href="/find?a={{i.name}}"><h3>{{i.name}}({{i.int0|default:"0"}})</h3></a>
+{%else%}
+<a href="/find?a={{i.name}}">{{i.name}}({{i.int0|default:"0"}})</a>
+{%endif%}
+{%endfor%}
 {%endblock%}

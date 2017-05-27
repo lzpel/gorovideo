@@ -6,7 +6,6 @@ import re
 import math
 from logging import info
 from google.appengine.ext import ndb
-from google.appengine.api import mail
 
 moto.addfilter("filter.filter")
 
@@ -21,37 +20,43 @@ class work(moto.workhandler):
 			s.o.redirect = s.i.redirect
 			s.o.error = s.i.error
 			s.o.user = s.kget(True)
-			s.o.url = s.i.url
 			if s.i.id:
 				s.o.main = base.getbyid(s.i.id)
 			if s.o.main and s.o.main.kusr:
 				s.o.make = s.o.main.kusr.get()
 			if s.o.user and s.o.main:
 				s.o.near = s.o.user.kner.count(s.o.main.key)
+				s.o.mine = (s.o.user.key == s.o.main.key) or (s.o.make and s.o.make.key == s.o.user.key)
 			s.o.auth = s.o.user and moto.getenviron("ADMIN_ACCOUNT_EMAIL") == s.o.user.mail
-			s.o.mine = s.o.user and (
-				(s.o.main and s.o.user.key == s.o.main.key) or (s.o.make and s.o.make.key == s.o.user.key))
 			return True
 
 	def page(s, sort, anal, kusr, kint, knerbgn, kfarbgn, knerend, kfarend, attr, gram, page):
 		respace = re.compile(u"\s+", re.UNICODE)
 		f = base.query(base.anal == anal).order(sort)
 		if kusr:
+			info(kusr)
 			f = f.filter(base.kusr == kusr)
 		if kint:
+			info(kint)
 			f = f.filter(base.kint == kint)
 		if knerbgn:
+			info(knerbgn)
 			f = f.filter(base.kslf.IN(knerbgn.get().kner or [0]))
 		if kfarbgn:
+			info(kfarbgn)
 			f = f.filter(base.kslf.IN(kfarbgn.get().kfar or [0]))
 		if knerend:
+			info(knerend)
 			f = f.filter(base.kner == knerend)
 		if kfarend:
+			info(kfarend)
 			f = f.filter(base.kner == kfarend)
 		if attr:
+			info(attr)
 			for k in respace.split(attr):
 				f = f.filter(base.attr == k)
 		if gram:
+			info(gram)
 			for k in respace.split(gram):
 				f = f.filter(*(base.getgramfilter(k)))
 		res = {
@@ -81,7 +86,7 @@ class work(moto.workhandler):
 			o.page = s.page(-base.qual, "doga", None, None, None, None, None, None, None, None, i.page)
 		if s.url("/attr"):
 			o.template = "homeattr"
-			o.page = base.query(base.anal == "attr").order(+base.bone).fetch()
+			o.attr = base.query(base.anal == "attr").order(+base.bone).fetch()
 		if s.url("/find"):
 			if i.t:
 				if i.t == u"a": o.a = i.q
@@ -125,14 +130,17 @@ class work(moto.workhandler):
 		if s.url("/item/#id"):
 			if o.main.anal == "clip":
 				o.template = "clip"
-				o.page = s.page(-base.bone, "doga", 0, 0, 0, 0, 0, 0, 0, 0, i.page)
+				o.page = s.page(-base.bone, "doga", 0, 0, o.main.key, 0, 0, 0, 0, 0, i.page)
 			if o.main.anal == "doga":
 				o.template = "doga"
 				o.rice = base.query(base.anal == "rice", base.kint == o.main.key).fetch()
-				o.contrice = len(o.rice)
-				o.contclip = base.query(base.anal == "clip", base.kner == o.main.key).count()
+				o.clip = base.query(base.anal == "clip", base.kner == o.main.key).fetch()
 				o.main.view = (o.main.view or 0) + 1
 				o.main.putpoint(o.user)
+				if o.user:
+					o.userclip = base.query(base.anal == "clip", base.kusr == o.user.key).fetch()
+					for i in o.userclip:
+						i.size = i.kner.count(o.main.key)
 		if s.url("/post/auth/item") and o.auth:
 			if i.cmd == "set":
 				o.main.populate(name=i.name, mail=i.mail, text=i.text, word=i.word)
@@ -154,11 +162,14 @@ class work(moto.workhandler):
 				o.main = base(anal="user", name=i.name, mail=i.mail, word=i.word)
 				o.main.put()
 				base(anal="clip", kusr=o.main.key, name=u"最初のクリップ").put()
-				o.redirect = "/item/{0}".format(o.main.key.id())
+				o.redirect = "/user/{0}".format(o.main.key.id())
 				s.kset(o.main.key)
-				mail.send_mail(sender=moto.getdefaultsender(), to=o.main.mail, subject=u"【gorogoro動画】会員情報変更",
-				               body=u"会員情報を変更しました。\n名前:{0}\nemail:{1}\npassword:{2}\nゆっくりしていってね_(:3」∠)_".format(
-					               o.main.name, o.main.mail, o.main.word))
+				mail = {
+					"to": o.main.mail,
+					"subject": u"【gorogoro動画】会員登録",
+					"body": u"会員登録しました\nゆっくりしていってね_(:3」∠)_"
+				}
+				moto.sendmail(mail)
 		if s.url("/post/user/follow") and o.user:
 			o.user.kner = filter(lambda x: x != o.main.key, o.user.kner) + ([o.main.key] if i.add else [])
 			o.user.put()
@@ -174,16 +185,20 @@ class work(moto.workhandler):
 				s.kset(None)
 		if s.url("/post/user/set") and o.user:
 			o.user.populate(name=i.name, text=i.text)
-			if i.image:
-				o.user.icon = i.image
+			if i.snapshot:
+				o.user.icon = i.snapshot
 			o.user.put()
 		if s.url("/post/user/sec") and o.user:
 			if o.user.word == i.word:
 				o.user.populate(mail=i.newmail, word=i.newword)
 				o.user.put()
-				mail.send_mail(sender=moto.getdefaultsender(), to=o.user.mail, subject=u"【gorogoro動画】会員情報変更",
-				               body=u"会員情報を変更しました。\n名前:{0}\nemail:{1}\npassword:{2}\nゆっくりしていってね_(:3」∠)_".format(
-					               o.user.name, o.user.mail, o.user.word))
+				mail = {
+					"to": o.user.mail,
+					"subject": u"【gorogoro動画】会員情報変更",
+					"body": u"会員情報を変更しました\nゆっくりしていってね_(:3」∠)_"
+				}
+				moto.sendmail(mail)
+				o.redirect = "/"
 			else:
 				o.redirect += "?error=wrond password"
 		if s.url("/post/user/del") and o.user:
@@ -193,20 +208,19 @@ class work(moto.workhandler):
 			else:
 				o.redirect += "?error=wrond password"
 		if s.url("/post/doga/new") and o.user:
-			o.main = base(anal="doga", name=u"無題", mail="o", kusr=o.user.key, icon=i.image, tlen=float(i.playlen),
-			              tpos=float(i.playpos))
+			o.main = base(anal="doga", name=u"無題", kusr=o.user.key, icon=i.snapshot)
+			o.main.populate(tlen=float(i.playlen), tpos=float(i.playpos))
 			o.main.put()
 		if s.url("/post/doga/file"):
-			if o.user and not o.main:#投稿時
-				o.main = base.query(base.anal == "doga", base.kusr == o.user.key).order(-base.bone).get()
-			if o.main and s.blob():
-				blob = s.blob()
-				blob = sorted(blob, key=lambda x: x.size)
-				o.main.size = len(blob)
-				o.main.putblob(blob)
+			# 低画質優先
+			if i.upload:
+				o.main.populate(size=len(i.upload), blob=i.upload)
+				o.main.put()
+			else:
+				o.main.key.delete()
 		if s.url("/post/doga/conv"):
 			o.doga = moto.getuploadurl("/post/doga/file", 1024 ** 3)
-			o.main = base.query(base.anal=="doga", base.size==1).order(base.last).get()
+			o.main = base.query(base.anal == "doga", base.size == 1 ).order(base.last).get()
 			if o.main:
 				o.main.put()
 		if s.url("/post/doga/attr") and o.user:
@@ -217,7 +231,7 @@ class work(moto.workhandler):
 				attr.size = base.query(base.anal == "doga", base.attr == i.attr).count()
 				attr.put()
 		if s.url("/post/doga/set") and o.mine:
-			o.main.populate(name=i.name, text=i.text, icon=i.image, tlen=float(i.playlen), tpos=float(i.playpos))
+			o.main.populate(name=i.name, text=i.text, icon=i.snapshot, tlen=float(i.playlen), tpos=float(i.playpos))
 			o.main.put()
 		if s.url("/post/doga/del") and o.mine:
 			o.main.key.delete()
@@ -234,6 +248,7 @@ class work(moto.workhandler):
 				o.main.populate(name=i.name, text=i.text)
 				o.main.put()
 			if i.item:
+				info(i.item)
 				# 動画
 				m = base.getbyid(i.item)
 				m.put()

@@ -18,6 +18,7 @@ libraries:
 skip_files:
 - .*ffmpeg.*
 - .*\.git.*
+- .*\.idea.*
   
 env_variables:
   ADMIN_ACCOUNT_EMAIL: 'misumi3104@gmail.com'

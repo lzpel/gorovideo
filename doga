@@ -1,5 +1,7 @@
 ﻿{%extends "base"%}
 {%block main%}
+<script src="/jquery.min.js"></script>
+<script src="/myutil.js"></script>
 <div class="row">
 	<div class="col-md-8">
 	    {%include "goroplay" %}
@@ -45,8 +47,9 @@
 			<a class="btn btn-default btn-sm" href="/post/doga/attr?redirect={{path}}&id={{main.key.id}}&attr={{i}}">X</a>
 		</div>
 		{%endfor%}
-		<form action="/post/doga/attr" ajaxsubmit="attr">
+		<form action="/post/doga/attr">
 			<input hidden name="id" value="{{main.key.id}}"/>
+			<input hidden name="redirect" value="{{path}}">
 			<input hidden name="add" value="True">
 			<div class="btn-group">
 				<input name="attr"class="btn btn-default btn-sm" placeholder="新しいタグ"/>
@@ -66,15 +69,16 @@
 							<h4 class="modal-title">クリップ</h4>
 						</div>
 						{%if user%}
-						<div class="modal-body cliplate" activelist="/clip/{{main.key.id}}">
-							<div>
-								<form action="/post/clip/set" ajaxsubmit="clip">
-									<input hidden name="id" value="[[id]]"/>
-									<input hidden name="item" value="{{main.key.id}}">
-									<input hidden name="add" value="[[used|bool::add]]">
-									<button type="submit"><i class="glyphicon glyphicon-star[[used|bool::-empty]]"></i>[[name]]</button>
-								</form>
-							</div>
+						<div class="modal-body">
+							{%for i in userclip%}
+							<form action="/post/clip/set">
+								<input hidden name="redirect" value="{{path}}">
+								<input hidden name="id" value="{{i.key.id}}"/>
+								<input hidden name="item" value="{{main.key.id}}">
+								<input hidden name="add" value="{%if not i.size%}add{%endif%}">
+								<button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-star{%if not i.size%}-empty{%endif%}"></i>{{i.name}}</button>
+							</form>
+							{%endfor%}
 						</div>
 						{%else%}
 						<div class="modal-body">
@@ -88,16 +92,13 @@
 				</div>
 			</div>
 		</div>
-		<div class="collapse" id="doga_info">
-			{{main.bone|gmt:"9"|date:"Y/m/d H:i"}} に公開<br/>
-			品質 {{main.qual}}<br/>
-			コメント数 {{contrice|default:"0"}} 回<br/>
-			マイリスト数 {{contclip|default:"0"}} 回<br/>
-			{%if main.size == 1 %}この動画は変換を待っている状態です。正しく再生できない可能性があります<br/>{%endif%}
-			{%if main.size == 0 %}この動画の変換に失敗しました。うｐ主は正しい動画で再アップロードしてください。<br/>{%endif%}
-			{{main.text|default:""|escape|linebreaks|link|safe}}<br/>
-		</div>
-		<a class="btn btn-default btn-sm center-block" data-toggle="collapse" href="#doga_info">...</a>
+		{{main.bone|gmt:"9"|date:"Y/m/d H:i"}} に公開<br/>
+		品質 {{main.qual}}<br/>
+		コメント数 {{rice|length}} 回<br/>
+		マイリスト数 {{clip|length}} 回<br/>
+		{%if main.size == 1 %}この動画は変換を待っている状態です。正しく再生できない可能性があります<br/>{%endif%}
+		{%if main.size == 0 %}この動画の変換に失敗しました。うｐ主は正しい動画で再アップロードしてください。<br/>{%endif%}
+		{{main.text|default:""|escape|linebreaks|link|safe}}<br/>
 	</div>
 	<div class="col-md-4">
 	    コメント<br/>
@@ -112,15 +113,13 @@
 		<p class="panel-title">作者権限</p>
 	</div>
 	<div class="panel-body">
-		<form action="/post/doga/set" method="POST" enctype="multipart/form-data">
+		<form action="/post/doga/set" method="POST" enctype="multipart/form-data" id="setform">
 			<input name="redirect" value="{{url}}" hidden>
 			<input name="id" value="{{main.key.id}}" hidden>
 			<legend>動画設定</legend>
 			<label class="control-label">静止画</label>
-			<video src="/blob/{{main.blob.0}}" id="image" width="100%" controls currenttime="{{main.tpos|default:"0"}}">
+			<video src="/blob/{{main.blob.0}}" width="100%" controls currenttime="{{main.tpos|default:"0"}}" id="setformdoga">
 			</video>
-			<input hidden name="image" snap="image" snapw="320" snaph="180"/>
-			<input hidden name="play" play="image"/>
 			<label class="control-label">題名</label>
 			<input name="name" type="text" class="form-control" value="{{main.name}}"/>
 			<label class="control-label">本文</label>
@@ -139,22 +138,11 @@
 		</form>
 	</div>
 </div>
-{%endif%}
-{%if auth%}
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<p class="panel-title">動画変換</p>
-	</div>
-	<div class="panel-body">
-		<form action="{{doga}}" method="POST" enctype="multipart/form-data">
-			<input name="redirect" value="{{url}}" hidden>
-			<input name="id" value="{{main.key.id}}" hidden>
-			<input name="file" type="file" multiple="multiple" class="form-control"/>
-			<button type="submit" class="btn btn-default">
-				<span class="glyphicon glyphicon-ok">保存</span>
-			</button>
-		</form>
-	</div>
-</div>
+<script>
+$("#setform").submit(function(){
+	addplaydata($(this),$("#setformdoga"))
+	addsnapshot($(this),$("#setformdoga"),320,180)
+})
+</script>
 {%endif%}
 {%endblock%}

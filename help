@@ -6,16 +6,30 @@
             <h3 class="panel-title">Qどうやって動画を投稿するのですか？</h3>
         </div>
         <div class="panel-body">
-			<p>A右上のアイコンをクリックしユーザーページへ行きます。画面上の「ファイルを選択ボタン」ボタンを押しアップロードしたい動画を選んでください。投稿するボタンを押して暫く待てばアップロードは完了しページは元の場所に遷移します</p>
-			<p>最初は動画のサムネイルは0秒目の画像で題名は「無題」となります。投稿者は動画の視聴ページでサムネイルと題名と説明文を何度でも編集できます。</p>
+			<p>A右上のアイコンをクリックしユーザーページへ行きます。「動画投稿」>「ファイルを選択」ボタンを押しアップロードしたい動画を選んでください。投稿するボタンを押して暫く待てばアップロードは完了します</p>
+			<p>初期状態では動画のサムネイルは0秒目の画像で題名は「無題」となります。投稿者は動画の視聴ページでサムネイルと題名と説明文を何度でも編集できます。</p>
 		</div>
 	</div>
     <div class="panel panel-info">
         <div class="panel-heading">
-            <h3 class="panel-title">Q時刻がずれます？</h3>
+            <h3 class="panel-title">Qアップロードした動画はどう処理されるのですか？</h3>
         </div>
         <div class="panel-body">
-			<p>時差です。</p>
+			<p>1GB未満の動画のみアップロードできます</p>
+			<p>動画が再エンコードされるまではそのまま視聴できます</p>
+			<p>最大5分60fps1280x720の高画質動画と最大30分30fps640x360の低画質動画に再エンコードされます</p>
+			<p>再エンコード終了後画質を選んで視聴できるようになります</p>
+		</div>
+	</div>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">Q投稿動画に制限はありますか？</h3>
+        </div>
+        <div class="panel-body">
+			<p>下記に該当する動画は削除します</p>
+			<p>公序良俗に反する動画</p>
+			<p>他者の権利を侵害する動画</p>
+			<p>犯罪違法に関わる動画</p>
 		</div>
 	</div>
     <div class="panel panel-info">
@@ -24,7 +38,16 @@
         </div>
         <div class="panel-body">
 			<p>直接ここで聞いてください</p>
-			<a class="twitter-timeline" href="https://twitter.com/gorovideo">Tweets by gorovideo</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+			<div class="row">
+				<div class="col-md-6">
+					<p>gorogoro動画公式<p>
+					<a class="twitter-timeline" href="https://twitter.com/gorovideo">Tweets by gorovideo</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+				</div>
+				<div class="col-md-6">
+					<p>gorogoro動画作者<p>
+					<a class="twitter-timeline" href="https://twitter.com/misumi3104">Tweets by misumi3104</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
