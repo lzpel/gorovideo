@@ -13,6 +13,13 @@ indexes:
 - kind: base
   properties:
   - name: anal
+  - name: kint
+  - name: bone
+    direction: desc
+
+- kind: base
+  properties:
+  - name: anal
   - name: attr
   - name: bone
 
@@ -113,6 +120,17 @@ indexes:
   - name: anal
   - name: kusr
   - name: qual
+    direction: desc
+
+- kind: base
+  properties:
+  - name: anal
+  - name: last
+
+- kind: base
+  properties:
+  - name: anal
+  - name: last
     direction: desc
 
 - kind: base

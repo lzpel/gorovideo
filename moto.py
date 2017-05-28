@@ -1,9 +1,10 @@
 ﻿# coding=utf-8
-import os, json, urllib, time, datetime, math
+import os, json, urllib, time, datetime, math, re
 from logging import info
 from google.appengine.ext.webapp import template, blobstore_handlers, RequestHandler
 from google.appengine.api import app_identity, mail
 from google.appengine.ext import blobstore, ndb
+
 
 def getenviron(key):
 	return os.environ.get(key)
@@ -18,8 +19,9 @@ def getuploadurl(next, maxbytes=None):
 
 
 def sendmail(data):
-	data["sender"]=u"anything@{0}.appspotmail.com".format(app_identity.get_application_id())
-	mail.send_mail(sender=data["sender"], to=data["to"], subject=data["subject"],body=data["body"])
+	data["sender"] = u"anything@{0}.appspotmail.com".format(app_identity.get_application_id())
+	mail.send_mail(sender=data["sender"], to=data["to"], subject=data["subject"], body=data["body"])
+
 
 def getunicode(t):
 	for i in ["utf-8", "ascii", "shift_jis", "euc-jp"]:
@@ -70,20 +72,21 @@ class base(ndb.Model):
 	qual = ndb.ComputedProperty(lambda s: float(sum(s.qtwo)))
 	tpos = ndb.FloatProperty()
 	tlen = ndb.FloatProperty()
+
 	# 過去
-	authdate = ndb.FloatProperty(repeated=True)
-	authterm = ndb.ComputedProperty(lambda s: sum(s.authdate))
-	viewdate = ndb.IntegerProperty(repeated=True)
-	viewterm = ndb.ComputedProperty(lambda s: sum(s.viewdate))
-	flt0 = ndb.FloatProperty()
-	flt1 = ndb.FloatProperty()
-	flt2 = ndb.FloatProperty()
-	flt3 = ndb.FloatProperty()
-	int0 = ndb.IntegerProperty()
-	int1 = ndb.IntegerProperty()
-	int2 = ndb.IntegerProperty()
-	int3 = ndb.IntegerProperty()
-	khas = ndb.KeyProperty(repeated=True)  # 同階層友好
+	# authdate = ndb.FloatProperty(repeated=True)
+	# authterm = ndb.ComputedProperty(lambda s: sum(s.authdate))
+	# viewdate = ndb.IntegerProperty(repeated=True)
+	# viewterm = ndb.ComputedProperty(lambda s: sum(s.viewdate))
+	# flt0 = ndb.FloatProperty()
+	# flt1 = ndb.FloatProperty()
+	# flt2 = ndb.FloatProperty()
+	# flt3 = ndb.FloatProperty()
+	# int0 = ndb.IntegerProperty()
+	# int1 = ndb.IntegerProperty()
+	# int2 = ndb.IntegerProperty()
+	# int3 = ndb.IntegerProperty()
+	# khas = ndb.KeyProperty(repeated=True)  # 同階層友好
 
 	@classmethod
 	def getbyid(c, i, m=True):
@@ -102,21 +105,6 @@ class base(ndb.Model):
 	def _pre_put_hook(s):
 		c = s.__class__
 		s.gram = c.getgram(s.getgramtext(), False)
-		# 移行
-		s.kner = s.kner or s.khas
-		s.qone = s.qone or s.viewdate
-		s.qtwo = s.qtwo or s.authdate
-		if s.anal == "doga":
-			s.tlen = s.tlen or s.flt0
-			s.tpos = s.tpos or s.flt1
-			s.view = s.view or s.int0
-			s.size = len(s.blob)
-		if s.anal == "attr":
-			s.size = s.size or s.int0
-		if s.anal == "clip":
-			pass
-		if s.anal == "rice":
-			s.tpos = s.tpos or s.flt0
 
 	def getgramtext(s):
 		# please custumize
@@ -155,8 +143,8 @@ class base(ndb.Model):
 				l.pop()
 			now = datetime.datetime.now()
 			num = (now - datetime.datetime.min).days % maxdays
-			# 日付変更線超過時初期化期待
-			if now.hour == 0:
+			# 午前中初期化期待
+			if now.hour < 12:
 				l[num] = 0
 			else:
 				l[num] += v
@@ -167,19 +155,23 @@ class base(ndb.Model):
 			rankadd(u.qone, 1)
 			rankadd(s.qtwo, math.sqrt(sum(v.qone)))
 			u.put()
-			s.put()
+		s.put()  # 必ずput
 
 
 class data:
 	def __getattr__(s, k):
 		return None
 
-
-class blobhandler(blobstore_handlers.BlobstoreDownloadHandler):
+#https://cloud.google.com/appengine/docs/standard/python/blobstore/
+#
+class blobhandler(RequestHandler):
 	def get(s, blob):
-		s.send_blob(blob)
-		if s.request.headers.has_key("Range"):
-			s.response.headers.add_header('X-AppEngine-BlobRange', s.request.headers['Range'])
+		s.response.headers.add_header('X-AppEngine-BlobKey', blob)
+		if "Range" in s.request.headers:
+			r = re.findall(r"\d+", s.request.headers['Range'])
+			r0 = int(r[0])
+			r1 = int(r[1]) if len(r) >= 2 else r0 + 1048576
+			s.response.headers.add_header('X-AppEngine-BlobRange', "bytes={0}-{1}".format(r0, r1))
 
 
 class workhandler(blobstore_handlers.BlobstoreUploadHandler, RequestHandler):
@@ -233,7 +225,7 @@ class workhandler(blobstore_handlers.BlobstoreUploadHandler, RequestHandler):
 		for k in s.request.arguments():
 			setattr(s.i, k, s.request.get(k))
 		if all(i.size for i in s.get_uploads()):
-			s.i.upload=[i.key() for i in s.get_uploads()]
+			s.i.upload = [i.key() for i in s.get_uploads()]
 		else:
 			blobstore.delete([i.key for i in s.get_uploads()])
 

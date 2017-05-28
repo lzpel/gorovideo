@@ -99,12 +99,44 @@
 		{%if main.size == 1 %}この動画は変換を待っている状態です。正しく再生できない可能性があります<br/>{%endif%}
 		{%if main.size == 0 %}この動画の変換に失敗しました。うｐ主は正しい動画で再アップロードしてください。<br/>{%endif%}
 		{{main.text|default:""|escape|linebreaks|link|safe}}<br/>
+		<div>
+			{%for i in rice%}
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<p>
+						@{{i.tpos|minsec}}
+						<a href="/user/{{i.make.key.id}}">
+							<b>{{i.make.name}}</b>
+							<img src="{{i.make.icon|default:"/nail.png"}}" width="20px" height="20px">
+						</a>
+						{{i.bone|gmt:"9"|date:"Y/m/d H:i"}}
+					</p>
+					</p>
+						{{i.text|default:""|escape|linebreaks|link|safe}}
+					</p>
+					<a>
+						<i class="glyphicon glyphicon-share-alt" aria-hidden="true"></i>
+						返信
+					</a>
+				</div>
+			</div>
+			{%endfor%}
+		</div>
 	</div>
 	<div class="col-md-4">
-	    コメント<br/>
-	    {%for i in rice%}
-	    <a href="/user/{{i.kusr.id}}">user</a> {{i.tpos}}s "{{i.text}}"<br/>
-	    {%endfor%}
+		<div class="row">
+			{%for i in near%}
+			<a class="col-xs-6" href="/item/{{i.key.id}}">
+			    <div style="position:relative;">
+			        <img src="{{i.icon}}" style="width:100%;height:auto;"/>
+			        <div style="position:absolute;top:0;bottom:0;left:0;right:0;">
+			            <kbd class="text-right">{{i.tlen|minsec}}</kbd>
+			        </div>
+			    </div>
+			    <p style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">{{i.name}}</p>
+			</a>
+			{%endfor%}
+		</div>
 	</div>
 </div>
 {%if mine%}

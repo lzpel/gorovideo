@@ -78,10 +78,10 @@ class work(moto.workhandler):
 	def work(s, i, o):
 		if s.url("/sign"):
 			o.template = "sign"
-		if s.url("/late") or s.url("/"):
+		if s.url("/late"):
 			o.template = "homelate"
 			o.page = s.page(-base.bone, "doga", None, None, None, None, None, None, None, None, i.page)
-		if s.url("/qual"):
+		if s.url("/qual") or s.url("/"):
 			o.template = "homequal"
 			o.page = s.page(-base.qual, "doga", None, None, None, None, None, None, None, None, i.page)
 		if s.url("/attr"):
@@ -102,8 +102,6 @@ class work(moto.workhandler):
 			o.page = s.page(sort, "doga", 0, 0, 0, 0, 0, 0, o.a, o.g, i.page)
 		if s.url("/help"):
 			o.template = "help"
-		if s.url("/test"):
-			ndb.put_multi(base.query().order(-base.last).fetch(1000))
 		if s.url("/user/qual/#id") or s.url("/user/#id"):
 			o.template = "userqual"
 			o.page = s.page(-base.qual, "doga", o.main.key, 0, 0, 0, 0, 0, 0, 0, i.page)
@@ -133,20 +131,24 @@ class work(moto.workhandler):
 				o.page = s.page(-base.bone, "doga", 0, 0, o.main.key, 0, 0, 0, 0, 0, i.page)
 			if o.main.anal == "doga":
 				o.template = "doga"
-				o.rice = base.query(base.anal == "rice", base.kint == o.main.key).fetch()
+				#米
+				o.rice = base.query(base.anal == "rice", base.kint == o.main.key).order(-base.bone).fetch()
+				for i in ndb.get_multi(list(set(i.kusr for i in o.rice))):
+					for j in o.rice:
+						if j.kusr==i.key:
+							j.make=i
+				#舞
 				o.clip = base.query(base.anal == "clip", base.kner == o.main.key).fetch()
+				#関
+				o.near = base.query(base.anal == "doga").order(+base.last).fetch(10)
 				o.main.view = (o.main.view or 0) + 1
 				o.main.putpoint(o.user)
 				if o.user:
 					o.userclip = base.query(base.anal == "clip", base.kusr == o.user.key).fetch()
 					for i in o.userclip:
 						i.size = i.kner.count(o.main.key)
-		if s.url("/post/auth/item") and o.auth:
-			if i.cmd == "set":
-				o.main.populate(name=i.name, mail=i.mail, text=i.text, word=i.word)
-				o.main.put()
-			if i.cmd == "del":
-				o.main.key.delete()
+		if s.url("/post/auth/del") and o.auth:
+			o.main.key.delete()
 		if s.url("/post/auth/attr") and o.auth:
 			ndb.delete_multi(base.query(base.anal == "attr").fetch(keys_only=True))
 			for x in i.attr.split():

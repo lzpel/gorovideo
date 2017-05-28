@@ -38,8 +38,12 @@
 				<ul class="nav navbar-nav">
 					<li>
 						<a href="/" style="padding-top:0;padding-bottom:0;">
-							<img src="/logo.png" style="height:30px;"/>
+							gorogoro動画<br/>
+							_(:3 」∠)_
 						</a>
+					</li>
+					<li class="hidden-xs">
+						<a>＜　ロゴ募集中</a>
 					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -81,23 +85,13 @@
 					<h3 class="panel-title">管理者権限</h3>
 				</div>
 				<div class="panel-body">
-					<form action="/post/auth/item" method="POST">
+					<p>qone=[{%for i in main.qone%}{{i}},{%endfor%}]</p>
+					<p>qone=[{%for i in main.qtwo%}{{i}},{%endfor%}]</p>
+					<form action="/post/auth/del" method="POST">
 						<input name="redirect" value="{{path}}" hidden>
 						<input hidden name="id" value="{{main.key.id}}">
-						<label>bone</label>
-						<input name="bone" type="text" value="{{main.bone|gmt:"9"|date:"Y/m/d H:i"}}" class="form-control">
-						<label>name</label>
-						<input name="name" type="text" value="{{main.name}}" class="form-control">
-						<label>text</label>
-						<textarea name="text" width="100%" class="form-control">{{main.text}}</textarea>
-						<label>mail</label>
-						<input name="mail" type="text" value="{{main.mail}}" class="form-control">
-						<label>word</label>
-						<input name="word" type="text" value="{{main.word}}" class="form-control">
-						<button class="btn btn-default" name="cmd" value="set">更新</button>
 						<button class="btn btn-default" name="cmd" value="del">削除</button>
 					</form>
-					<h3>attribute</h3>
 					<form action="/post/auth/attr" method="POST" class="form-vertical">
 						<input name="redirect" value="{{path}}" hidden>
 						<input name="attr" class="form-control"></input>

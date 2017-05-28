@@ -2,9 +2,9 @@
 {%block list%}
 {%for i in attr%}
 {%if i.mail%}
-<a href="/find?a={{i.name}}"><h3>{{i.name}}({{i.int0|default:"0"}})</h3></a>
+<a href="/find?a={{i.name}}"><h3>{{i.name}}({{i.size|default:"0"}})</h3></a>
 {%else%}
-<a href="/find?a={{i.name}}">{{i.name}}({{i.int0|default:"0"}})</a>
+<a href="/find?a={{i.name}}">{{i.name}}({{i.size|default:"0"}})</a>
 {%endif%}
 {%endfor%}
 {%endblock%}

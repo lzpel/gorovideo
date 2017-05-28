@@ -1,8 +1,9 @@
 ﻿<nav aria-label="Page navigation">
     <ul class="pagination">
+        <li><a>{{page.count}}件</a></li>
         <li><a aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
         {%for i in page.pagerng%}
-        <li><a href="{{path}}?page={{i}}" {%if i == page.page%}class="active"{%endif%}>{{i}}</a></li>
+        <li {%if i == page.page%}class="active"{%endif%}><a href="{{path}}?page={{i}}">{{i}}</a></li>
         {%endfor%}
         <li><a aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
     </ul>
