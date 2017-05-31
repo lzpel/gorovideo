@@ -6,7 +6,7 @@ handlers:
 
 - url: /(.*\..*)
   static_files: \1
-  upload: .*\.(txt|jpg|png|gif|woff|woff2|ttf|css|js)
+  upload: .*\.(txt|jpg|png|gif|woff|woff2|ttf|css|js|svg)
 
 - url: /.*
   script: main.app

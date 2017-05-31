@@ -8,7 +8,7 @@ register = template.create_template_register()
 
 @register.filter
 def minsec(v):
-	if v == v:
+	if v == v and isinstance(v,float):
 		v = int(v)
 		return "{0}:{1:02d}".format(v / 60, v % 60)
 

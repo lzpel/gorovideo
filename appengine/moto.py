@@ -136,18 +136,15 @@ class base(ndb.Model):
 
 	def putpoint(s, v):
 		def rankadd(l, v):
-			maxdays = 10
-			while len(l) < maxdays:
-				l.append(0)
-			while len(l) > maxdays:
-				l.pop()
-			now = datetime.datetime.now()
-			num = (now - datetime.datetime.min).days % maxdays
-			# 午前中初期化期待
-			if now.hour < 12:
-				l[num] = 0
+			size = 12
+			if len(l) != size:
+				del l[:]
+				l.extend(0 for i in xrange(size))
+			num = (datetime.datetime.now() - datetime.datetime.min).seconds / 3600.0 % size
+			if num % 1 <0.5:
+				l[int(num)]=0#初期化
 			else:
-				l[num] += v
+				l[int(num)]+=v
 
 		u = s.kusr.get()
 		if v and u.key != v.key:
@@ -162,7 +159,8 @@ class data:
 	def __getattr__(s, k):
 		return None
 
-#https://cloud.google.com/appengine/docs/standard/python/blobstore/
+
+# https://cloud.google.com/appengine/docs/standard/python/blobstore/
 #
 class blobhandler(RequestHandler):
 	def get(s, blob):

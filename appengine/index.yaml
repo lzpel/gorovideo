@@ -13,71 +13,71 @@ indexes:
 - kind: base
   properties:
   - name: anal
+  - name: attr
+  - name: bone
+
+- kind: base
+  properties:
+  - name: anal
+  - name: attr
+  - name: bone
+    direction: desc
+
+- kind: base
+  properties:
+  - name: anal
+  - name: attr
+  - name: qual
+
+- kind: base
+  properties:
+  - name: anal
+  - name: attr
+  - name: qual
+    direction: desc
+
+- kind: base
+  properties:
+  - name: anal
+  - name: bone
+
+- kind: base
+  properties:
+  - name: anal
+  - name: bone
+    direction: desc
+
+- kind: base
+  properties:
+  - name: anal
+  - name: gram
+  - name: bone
+
+- kind: base
+  properties:
+  - name: anal
+  - name: gram
+  - name: bone
+    direction: desc
+
+- kind: base
+  properties:
+  - name: anal
+  - name: gram
+  - name: qual
+
+- kind: base
+  properties:
+  - name: anal
+  - name: gram
+  - name: qual
+    direction: desc
+
+- kind: base
+  properties:
+  - name: anal
   - name: kint
   - name: bone
-    direction: desc
-
-- kind: base
-  properties:
-  - name: anal
-  - name: attr
-  - name: bone
-
-- kind: base
-  properties:
-  - name: anal
-  - name: attr
-  - name: bone
-    direction: desc
-
-- kind: base
-  properties:
-  - name: anal
-  - name: attr
-  - name: qual
-
-- kind: base
-  properties:
-  - name: anal
-  - name: attr
-  - name: qual
-    direction: desc
-
-- kind: base
-  properties:
-  - name: anal
-  - name: bone
-
-- kind: base
-  properties:
-  - name: anal
-  - name: bone
-    direction: desc
-
-- kind: base
-  properties:
-  - name: anal
-  - name: gram
-  - name: bone
-
-- kind: base
-  properties:
-  - name: anal
-  - name: gram
-  - name: bone
-    direction: desc
-
-- kind: base
-  properties:
-  - name: anal
-  - name: gram
-  - name: qual
-
-- kind: base
-  properties:
-  - name: anal
-  - name: gram
-  - name: qual
     direction: desc
 
 - kind: base

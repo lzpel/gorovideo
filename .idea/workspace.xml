@@ -2,15 +2,58 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5e6497e7-c2e1-45c2-a088-916cf74bacf6" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/logo.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/base" afterPath="$PROJECT_DIR$/base" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/doga" afterPath="$PROJECT_DIR$/doga" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/homeattr" afterPath="$PROJECT_DIR$/homeattr" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.yaml" afterPath="$PROJECT_DIR$/index.yaml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moto.py" afterPath="$PROJECT_DIR$/moto.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/page" afterPath="$PROJECT_DIR$/page" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/attr.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/base" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/clip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/bootstrap-theme.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/bootstrap-theme.css.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/bootstrap-theme.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/bootstrap-theme.min.css.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/bootstrap.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/bootstrap.css.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/bootstrap.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/bootstrap.min.css.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/doga" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/filter/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/filter/filter/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/find" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/fonts/glyphicons-halflings-regular.eot" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/fonts/glyphicons-halflings-regular.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/fonts/glyphicons-halflings-regular.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/fonts/glyphicons-halflings-regular.woff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/fonts/glyphicons-halflings-regular.woff2" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/goroplay" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/help" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/home" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/homeattr" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/homelate" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/homequal" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/index.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/jquery.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/js/bootstrap.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/js/bootstrap.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/js/npm.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/main.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/moto.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/myutil.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/nail.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/page" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/pageclip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/pagedoga" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/pageuser" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/player.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/policy.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sign" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/user" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/userclip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/userconf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/userdoga" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/userkbgn" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/userkend" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/userlate" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/userprof" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/userqual" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,14 +65,32 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="moto.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/moto.py">
+      <file leaf-file-name="moto.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/appengine/moto.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="175" column="0" lean-forward="true" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
-              <folding>
-                <element signature="e#15#64#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-3402">
+              <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="doga" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/appengine/doga">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="147">
+              <caret line="7" column="52" lean-forward="false" selection-start-line="7" selection-start-column="52" selection-end-line="7" selection-end-column="52" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/appengine/base">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="294">
+              <caret line="35" column="60" lean-forward="false" selection-start-line="35" selection-start-column="60" selection-end-line="35" selection-end-column="85" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -45,7 +106,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>$</find>
       <find>フォロー</find>
       <find>cont</find>
       <find>{{play</find>
@@ -75,6 +135,7 @@
       <find>s</find>
       <find>i.</find>
       <find>]</find>
+      <find>minsec</find>
     </findStrings>
     <replaceStrings>
       <replace>kintcont</replace>
@@ -116,7 +177,6 @@
         <option value="$PROJECT_DIR$/docker/test.py" />
         <option value="$PROJECT_DIR$/docker/gke.yaml" />
         <option value="$PROJECT_DIR$/docker/Dockerfile" />
-        <option value="$PROJECT_DIR$/app.yaml" />
         <option value="$PROJECT_DIR$/home" />
         <option value="$PROJECT_DIR$/find" />
         <option value="$PROJECT_DIR$/userlate" />
@@ -128,15 +188,18 @@
         <option value="$PROJECT_DIR$/user" />
         <option value="$PROJECT_DIR$/goroplay" />
         <option value="$PROJECT_DIR$/myutil.js" />
-        <option value="$PROJECT_DIR$/filter/filter/__init__.py" />
         <option value="$PROJECT_DIR$/userdoga" />
         <option value="$PROJECT_DIR$/docker/conv.py" />
         <option value="$PROJECT_DIR$/homeattr" />
         <option value="$PROJECT_DIR$/page" />
-        <option value="$PROJECT_DIR$/base" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/base" />
         <option value="$PROJECT_DIR$/doga" />
+        <option value="$PROJECT_DIR$/app.yaml" />
+        <option value="$PROJECT_DIR$/filter/filter/__init__.py" />
         <option value="$PROJECT_DIR$/moto.py" />
+        <option value="$PROJECT_DIR$/appengine/doga" />
+        <option value="$PROJECT_DIR$/appengine/base" />
       </list>
     </option>
   </component>
@@ -191,64 +254,22 @@
               <option name="myItemId" value="gorovideo" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gorovideo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gorovideo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gorovideo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gorovideo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="filter" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gorovideo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gorovideo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="filter" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="filter" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gorovideo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gorovideo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="docker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gorovideo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gorovideo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="appengine" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -371,7 +392,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="gorogoro" />
       <option name="SCRIPT_NAME" value="$USER_HOME$/AppData/Local/Google/Cloud SDK/google-cloud-sdk/bin/dev_appserver.py" />
-      <option name="PARAMETERS" value="." />
+      <option name="PARAMETERS" value="appengine" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <method />
@@ -436,9 +457,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://C:/Python27/Lib/xml/sax/xmlreader.py" />
-    <entry file="file://C:/Python27/Lib/ConfigParser.py" />
-    <entry file="file://C:/Python27/Lib/threading.py" />
     <entry file="file://C:/Python27/Lib/bsddb/dbobj.py" />
     <entry file="file://C:/Python27/Lib/pickle.py" />
     <entry file="file://C:/Python27/Lib/multiprocessing/pool.py" />
@@ -462,13 +480,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
           <caret line="4" column="29" lean-forward="false" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="20" column="12" lean-forward="false" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -616,16 +627,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/filter/filter/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="26" column="22" lean-forward="false" selection-start-line="26" selection-start-column="22" selection-end-line="26" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#48#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/userdoga">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
@@ -650,14 +651,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/goroplay">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="133" column="25" lean-forward="false" selection-start-line="133" selection-start-column="25" selection-end-line="133" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../videojs-resolution-switcher-master/videojs-resolution-switcher-master/examples/html5.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-231">
@@ -671,24 +664,8 @@
         <state relative-caret-position="462">
           <caret line="44" column="36" lean-forward="false" selection-start-line="44" selection-start-column="36" selection-end-line="44" selection-end-column="36" />
           <folding>
-            <element signature="e#0#35#0" expanded="true" />
+            <element signature="e#0#35#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/base">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="51" column="28" lean-forward="false" selection-start-line="51" selection-start-column="28" selection-end-line="51" selection-end-column="96" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/doga">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="119" column="20" lean-forward="false" selection-start-line="119" selection-start-column="20" selection-end-line="119" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -700,16 +677,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-157">
-          <caret line="141" column="18" lean-forward="false" selection-start-line="141" selection-start-column="18" selection-end-line="141" selection-end-column="18" />
-          <folding>
-            <element signature="e#15#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/page">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
@@ -718,13 +685,83 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/base">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="8" column="30" lean-forward="false" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="8" column="56" lean-forward="false" selection-start-line="8" selection-start-column="56" selection-end-line="8" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/goroplay">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1386">
+          <caret line="137" column="0" lean-forward="false" selection-start-line="137" selection-start-column="0" selection-end-line="149" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doga">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="121" column="40" lean-forward="false" selection-start-line="121" selection-start-column="34" selection-end-line="121" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filter/filter/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="10" column="36" lean-forward="false" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="141" column="18" lean-forward="false" selection-start-line="141" selection-start-column="18" selection-end-line="141" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/moto.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="175" column="0" lean-forward="true" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
-          <folding>
-            <element signature="e#15#64#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="294">
+          <caret line="149" column="32" lean-forward="false" selection-start-line="149" selection-start-column="32" selection-end-line="149" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appengine/moto.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3402">
+          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appengine/doga">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="52" lean-forward="false" selection-start-line="7" selection-start-column="52" selection-end-line="7" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appengine/base">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="35" column="60" lean-forward="false" selection-start-line="35" selection-start-column="60" selection-end-line="35" selection-end-column="85" />
+          <folding />
         </state>
       </provider>
     </entry>
