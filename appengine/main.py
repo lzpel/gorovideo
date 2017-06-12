@@ -133,10 +133,6 @@ class work(moto.workhandler):
 				o.template = "doga"
 				#米
 				o.rice = base.query(base.anal == "rice", base.kint == o.main.key).order(-base.bone).fetch()
-				for i in ndb.get_multi(list(set(i.kusr for i in o.rice))):
-					for j in o.rice:
-						if j.kusr==i.key:
-							j.make=i
 				#舞
 				o.clip = base.query(base.anal == "clip", base.kner == o.main.key).fetch()
 				#関

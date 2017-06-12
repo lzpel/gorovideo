@@ -11,6 +11,11 @@
 		<a href="/attr">カテゴリ</a>
 	</li>
 </ul>
+<style>
+.btn-group .btn{
+	display:inline-block;
+}
+</style>
 {%block list%}
 {%endblock%}
 {%endblock%}
