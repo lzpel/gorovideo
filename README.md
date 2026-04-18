@@ -13,19 +13,27 @@ Google Cloud Platform 上で動いていた動画共有サイト（2017年運用
 
 ### 当時から存在していたもの
 
-| パス | 内容 |
-|---|---|
-| `appengine/` | Python2.7 App Engine 本体（`main.py`, `moto.py`、Django風テンプレート `base`/`doga`/`home*`/`user*`/`find`/`sign`）、Bootstrap3 + MediaElement.js + mejs-feature-barrage を vendoring |
-| `docker/` | Blobstore にアップロードされた生動画を ffmpeg で 360p/720p MP4 に変換するコンバーター（`conv.py` + `Dockerfile`） |
+- `appengine/` — Python2.7 App Engine 本体
+  - `main.py`, `moto.py` とルーティング／モデル
+  - Django風テンプレート `base`/`doga`/`home*`/`user*`/`find`/`sign`
+  - Bootstrap3 + MediaElement.js + mejs-feature-barrage を vendoring
+- `docker/` — Blobstore にアップロードされた生動画を ffmpeg で 360p/720p MP4 に変換するコンバーター
+  - `conv.py` と `Dockerfile`
 
 ### アーカイブ再構築で追加したもの
 
-| パス | 内容 |
-|---|---|
-| `scripts/` | Datastore からデータを抜き出して整形するための Python ツール群。uv で管理 (`pyproject.toml`)。`dump_datastore.py`（全 kind を JSON 化）→ `analyze.py`（doga ↔ BlobInfo 突き合わせ）→ `fetch_and_organize.py` / `rebuild_dead.py`（GCS から blob を取得して分類）→ `extract_site_data.py` + `extract_thumbs.py`（サイト表示用に整形＋サムネ分離） |
-| `web/` | Next.js 16 (App Router, `output: 'export'`, basePath `/gorovideo`) で作った静的サイト。vendor は `public/vendor/bootstrap`、サムネは `public/thumb`・`public/uicon`、データは `public/data/*.json`、動画は GitHub Releases から直参照 |
-| `.github/workflows/deploy.yml` | `master` push で `web/` をビルドして GitHub Pages にデプロイ |
-| `.gitignore` | `data/` 配下（復元ローカル作業ディレクトリ）と `env.sh`（gcloud CLI のエイリアス）を除外 |
+- `scripts/` — Datastore からデータを抜き出して整形するための Python ツール群。uv で管理 (`pyproject.toml`)
+  - `dump_datastore.py` — 全 kind を JSON 化
+  - `analyze.py` — doga ↔ BlobInfo の突き合わせ
+  - `fetch_and_organize.py` / `rebuild_dead.py` — GCS から blob を取得して分類
+  - `extract_site_data.py` + `extract_thumbs.py` — サイト表示用に整形＋サムネ分離
+- `web/` — Next.js 16 (App Router, `output: 'export'`, basePath `/gorovideo`) で作った静的サイト
+  - vendor は `public/vendor/bootstrap`
+  - サムネは `public/thumb`・`public/uicon`
+  - データは `public/data/*.json`
+  - 動画は GitHub Releases から直参照
+- `.github/workflows/deploy.yml` — `master` push で `web/` をビルドして GitHub Pages にデプロイ
+- `.gitignore` — `data/` 配下（復元ローカル作業ディレクトリ）と `env.sh`（gcloud CLI のエイリアス）を除外
 
 動画ファイル本体（計 8.1 GiB）は **GitHub Releases の `v1-archive` タグ**に添付されている（174 ファイル）。
 
@@ -42,13 +50,13 @@ Google Cloud Platform 上で動いていた動画共有サイト（2017年運用
 ### `data/meta/`
 Datastore の生の JSON ダンプ。
 
-| ファイル | 内容 |
-|---|---|
-| `base.json` | すべての `base` エンティティ（3529件）。`anal` 列で `doga`（動画74件）, `user`（会員1526件、大半は2025年以降のボット登録）, `clip`（プレイリスト1527件）, `rice`（コメント288件）, `attr`（タグ114件）を判別 |
-| `BlobInfo.json` | `__BlobInfo__` kind（185件）。blob キーと GCS オブジェクトパスのマッピング、元アップロードファイル名・サイズ・MIME・作成日時 |
-| `GsFileInfo.json` | `__GsFileInfo__` kind（このプロジェクトでは0件） |
-| `videos.json` | `analyze.py` で doga のみ抜き出し、`blob[]` を BlobInfo と照合してローカルでの存在状況を記録した中間形式 |
-| `missing.json` / `orphans.json` / `plan.json` | 再取得計画を立てるための照合結果 |
+- `base.json` — すべての `base` エンティティ（3529件）
+  - `anal` 列で種別判定: `doga` 動画74件 / `user` 会員1526件（大半は2025年以降のボット登録）/ `clip` プレイリスト1527件 / `rice` コメント288件 / `attr` タグ114件
+- `BlobInfo.json` — `__BlobInfo__` kind（185件）
+  - blob キーと GCS オブジェクトパスのマッピング、元アップロードファイル名・サイズ・MIME・作成日時
+- `GsFileInfo.json` — `__GsFileInfo__` kind（このプロジェクトでは0件）
+- `videos.json` — `analyze.py` で doga のみ抜き出し、`blob[]` を BlobInfo と照合してローカルでの存在状況を記録した中間形式
+- `missing.json` / `orphans.json` / `plan.json` — 再取得計画を立てるための照合結果
 
 ### `data/live/`
 **現役の投稿動画（74本 / 111ファイル / 3.7 GiB）**。ファイル名は `{videoId}_{idx}.mp4`。
