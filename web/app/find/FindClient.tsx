@@ -92,7 +92,7 @@ function FindInner({ videos, tags }: Props) {
         ))}
       </div>
       <p className="text-muted">{filtered.length} 件</p>
-      <div className="row">
+      <div className="row video-grid">
         {filtered.map((v) => (
           <div className="col-xs-6 col-sm-4 col-md-3" key={v.id}>
             <VideoCard v={v as Video} />

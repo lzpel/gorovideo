@@ -17,7 +17,7 @@ export default function Late() {
           <Link href="/find/">検索・タグ</Link>
         </li>
       </ul>
-      <div className="row">
+      <div className="row video-grid">
         {videos.map((v) => (
           <div className="col-xs-6 col-sm-4 col-md-3" key={v.id}>
             <VideoCard v={v} />
