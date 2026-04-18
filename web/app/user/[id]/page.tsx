@@ -26,16 +26,14 @@ export default async function UserPage({
   return (
     <div>
       <div style={{ display: "flex", alignItems: "center", marginBottom: 16 }}>
-        {u.icon ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={withBasePath(u.icon)}
-            alt=""
-            width={72}
-            height={72}
-            style={{ marginRight: 12 }}
-          />
-        ) : null}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={withBasePath(u.icon ?? "/nail.png")}
+          alt=""
+          width={72}
+          height={72}
+          style={{ marginRight: 12 }}
+        />
         <div>
           <h3 style={{ margin: 0 }}>{u.name || "noname"}</h3>
           <p style={{ whiteSpace: "pre-wrap", margin: "4px 0 0 0" }}>{u.text}</p>

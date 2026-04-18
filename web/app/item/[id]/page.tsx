@@ -51,7 +51,7 @@ export default async function ItemPage({
             <img
               width={50}
               height={50}
-              src={author.icon ? withBasePath(author.icon) : undefined}
+              src={withBasePath(author.icon ?? "/nail.png")}
               alt=""
               style={{ marginRight: 8 }}
             />
