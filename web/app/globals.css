@@ -5,12 +5,9 @@ body {
 }
 
 /* Video grid card */
-.video-card {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-  margin-bottom: 16px;
-}
+.video-grid { display: flex; flex-wrap: wrap; }
+.video-grid > [class*="col-"] { display: flex; }
+.video-card { display: flex; flex-direction: column; height: 100%; text-decoration: none; color: inherit; margin-bottom: 16px; }
 .video-card:hover {
   text-decoration: none;
   color: inherit;

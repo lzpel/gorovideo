@@ -40,7 +40,7 @@ export default async function UserPage({
         </div>
       </div>
       <h4>投稿動画（{mine.length}）</h4>
-      <div className="row">
+      <div className="row video-grid">
         {mine.map((v) => (
           <div className="col-xs-6 col-sm-4 col-md-3" key={v.id}>
             <VideoCard v={v} />
