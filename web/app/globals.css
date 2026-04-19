@@ -7,7 +7,7 @@ body {
 /* Video grid card */
 .video-grid { display: flex; flex-wrap: wrap; }
 .video-grid > [class*="col-"] { display: flex; }
-.video-card { display: flex; flex-direction: column; height: 100%; text-decoration: none; color: inherit; margin-bottom: 16px; }
+.video-card { display: flex; flex-direction: column; height: 100%; width: 100%; text-decoration: none; color: inherit; margin-bottom: 16px; }
 .video-card:hover {
   text-decoration: none;
   color: inherit;
@@ -16,7 +16,7 @@ body {
 .video-card .thumb {
   position: relative;
   width: 100%;
-  padding-bottom: 56.25%;
+  aspect-ratio: 16 / 9;
   background: #000;
   overflow: hidden;
 }
@@ -52,7 +52,7 @@ body {
 .player-stage {
   position: relative;
   width: 100%;
-  padding-bottom: 56.25%;
+  aspect-ratio: 16 / 9;
   background: #000;
 }
 .player-stage video {
