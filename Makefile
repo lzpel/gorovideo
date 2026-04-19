@@ -1,13 +1,13 @@
 .PHONY: run build install clean
 
+generate:
+	cd web && npm ci
+
 run:
 	cd web && npm run dev
 
-build:
+deploy:
 	cd web && npm run build
-
-install:
-	cd web && npm ci
 
 clean:
 	rm -rf web/.next web/out
